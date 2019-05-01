@@ -1,0 +1,61 @@
+<div class="navbar container">
+    <a id="author-name" href="{{ include.baseurl }}" class="alignable pull-left">{{ include.title }}</a>
+    <ul id="navlist" class="alignable pull-right">
+        {% for nav in include.navigation %}
+        <li class="alignable pull-left nav-title">
+            <a href="#" class="nav-main" data-sub='{{ nav.sub | jsonify }}' data-category='{{ nav.name }}'>{{ nav.name }}</a>
+            {% if forloop.last == false %}|{% endif %}
+            
+            {% if include.category %}
+                {% if nav.name == include.category %}
+                    {% assign navsub = nav.sub %}
+                    {% assign category = include.category %}
+                {% endif %}
+            {% else %}
+                {% if forloop.first == true %}
+                    {% assign navsub = nav.sub %}
+                    {% assign category = nav.name %}
+                {% endif %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="container">
+    <ul id="navsub" class="alignable pull-left">
+        {% for nav in navsub %}
+        <li class="alignable pull-left nav-title">
+            <a href="../{{ category | downcase }} {{ nav.name | downcase }}" {% if nav.newtab == true %} target="_blank"{% endif %}>{{ nav.name }}</a>
+            {% if forloop.last == false %}|{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    $(".nav-main").click(function () {
+        const subMenus = $(this).data('sub'),
+            navSub = $("#navsub")
+            category = $(this).data('category');
+
+        navSub.empty();
+        subMenus.forEach(function (element, index) {
+            const aTag = $("<a></a>");
+            aTag.attr("href", "../" + category.toLowerCase() + " " + element.name.toLowerCase() + "/");
+            aTag.text(element.name);
+            if (element.newtab === true) { aTag.attr("target", "_blank");}
+
+            const liTag = $("<li class='alignable pull-left nav-title'></li>");
+            liTag.append(aTag);
+            if (index !== subMenus.length - 1) { liTag.append(" |"); }
+
+            navSub.append(liTag);
+
+        });
+        return false;
+    });
+
+
+</script>

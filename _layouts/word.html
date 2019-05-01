@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<input type="text" id="searchInput" onkeyup="search()" placeholder="Suchen Sie bitte ein Wörter...">
+
+{{ content }}
+
+<script type="text/javascript">
+
+    function search() {
+        const input = $("#searchInput"),
+            table = $("#table");
+        
+        var filter = input.val().toUpperCase(),
+            tr = table.find('tr');
+
+        tr.each(function(index, element){
+            var td = $(element).find('td')[1];
+            if (td){
+                var txtValue = td.textContent || td.innerText;
+                if(txtValue.toUpperCase().indexOf(filter) > -1){
+                    $(element).show();
+                } else {
+                    $(element).hide();
+                }
+            }
+        });
+    }
+</script>

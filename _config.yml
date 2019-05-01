@@ -1,0 +1,53 @@
+title: Deutsch Lernen
+description: Ich würde gern Deutsch ordnen.
+author: JinJe Yang
+url: "https://seiren87dev.github.io"
+baseurl: "/"
+favicon: # Path
+
+# Navigation
+navigation:
+- name: "Gramatik"
+  sub: 
+    - name: "Nomen und Artikel"
+    - name: "Verben"
+    - name: "Adjektiv"
+    - name: "Präposition"
+    - name: "Satz"
+    - name: "Sonstigen"
+# - name: "Wörter"
+#   sub:
+#     - name: "Nomen"
+#     - name: "Verben"
+#     - name: "Adjektiv"
+#     - name: "Sprache"
+# - name: "Sample"
+#   sub:
+#     - name: "Resume"
+#     - name: "Contact"
+#       newtab: false
+
+# Social Media System
+og_image: # Path
+og_type: "article" # http://ogp.me/#types
+og_locale: "de_DE" # locale
+facebook_id: # ID
+twitter_card: "summary" # summary, summary_large_image, app, player
+twitter_site: "@seiren87dev" # @username for the website used in the card footer.
+twitter_creator: "@seiren87dev" # @username for the content creator / author.
+
+# Tracking
+google_analytics_id: # ID
+
+# Footer
+footer: true
+footer_url: "https://github.com/ankitsultana"
+footer_text: "Page design by Ankit Sultana"
+
+# Setting
+markdown: kramdown
+kramdown:
+  parse_block_html: true
+sass:
+    style: compressed
+    sass_dir: _sass

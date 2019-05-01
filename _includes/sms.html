@@ -1,0 +1,10 @@
+<meta property="og:url" content="{{ include.url }}">
+<meta property="og:title" content="{{ include.title }}">
+<meta property="og:description" content="{{ include.description }}">
+<meta property="og:type" content="{{ include.type }}">
+<meta name="twitter:card" content="{{ include.twitter_card }}" />
+<meta name="twitter:site" content="{{ include.twitter_site }}" />
+<meta name="twitter:creator" content="{{ include.twitter_creator }}" />
+{% if include.image %}<meta property="og:image" content="{{ include.image }}">{% endif %}
+{% if include.facebook_id %}<meta property="fb:app_id" content="{{ include.facebook_id }}">{% endif %}
+

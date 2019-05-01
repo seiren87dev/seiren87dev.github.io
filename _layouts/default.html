@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Title -->
+    {% if page.title %}
+        {% assign title = page.title %}
+    {% else %}
+        {% assign title = site.title %}
+    {% endif %}
+
+    <!-- Description -->
+    {% if page.description %}
+        {% assign description = page.description %}
+    {% else %}
+        {% assign description = site.description %}
+    {% endif %}
+
+    <!-- URL -->
+    {% assign url = site.url | append: site.baseurl | append: page.url %}
+
+    <!-- Category -->
+    {% if page.category %}
+        {% assign category = page.category %}
+    {% endif %}
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="blog,lernen,deutsch">
+    <meta name="author" content="{{ site.author }}">
+    <meta name="description" content="{{ description }}">
+    {% if page.url == "/404.html" %}
+        <meta http-equiv="refresh" content="5; url=/">
+    {% endif %}
+
+    <!-- Title -->
+    <title>{{ title }}</title>
+
+    <!-- Link -->
+    <link rel="stylesheet" href="../css/main.css">
+    {% if site.favicon %}
+        <link rel="shortcut icon" type="image/ico" href="{{ site.favicon }}">
+        <link rel="icon" sizes="16x16 32x32" type="image/ico" href="{{ site.favicon }}">
+    {% endif %}
+
+    <!-- Javascripts -->
+    <script src="/asset/javascripts/jquery-3.4.0.slim.js"></script>
+
+    <!-- Social Media Service -->
+    {% include sms.html 
+        url = url
+        title = site.title
+        description = description
+        image = site.og_image
+        type = site.og_type
+        locale = site.og_locale
+        facebook_id = site.facebook_id
+        twitter_card = site.twitter_card
+        twitter_site = site.twitter_site
+        twitter_creator = site.twitter_creator
+    %}
+</head>
+
+<body>
+    <div class="wrapper">
+        {% include nav.html baseurl=site.baseurl title=title navigation=site.navigation category=category %}
+        <div style="clear:both"></div> 
+        <hr>
+        <div class="container content">
+            {{ content }}
+        </div>
+    </div>
+    {% include google_analytics.html google_analytics_id=site.google_analytics_id %}
+
+</body>
+<footer>
+    {% if site.footer == true %}
+    <hr />
+    <p style="text-align: center; margin-bottom: 10px">
+        <a href="{{ site.footer_url }}" style="color: black"><small>{{ site.footer_text }}</small></a>
+    </p>
+    {% endif %}
+</footer>
