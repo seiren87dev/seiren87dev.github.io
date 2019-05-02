@@ -2,29 +2,68 @@
 layout: default
 ---
 
-<input type="text" id="searchInput" onkeyup="search()" placeholder="Suchen Sie bitte ein Wörter...">
-
-{{ content }}
+{% if page.search_filter %}
+    {% assign search_filter = page.search_filter %}
+{% else %}
+    {% assign search_filter = "0" | split: ',' %}
+{% endif %}
 
 <script type="text/javascript">
+    const searchFilter = Array();
 
+    {% for a in search_filter %}
+        searchFilter.push(parseInt('{{ a }}'));
+    {% endfor %}
+
+</script>
+
+<div>
+    <input type="text" id="searchInput" placeholder="Suchen Sie bitte ein Wörter...">
+    <button type="button" onclick="init()" class="pull-left search-buttons">Anfangs</button>
+    <button type="button" onclick="search()" class="pull-right search-buttons">Suchen</button>
+
+</div>
+
+<div id="table">
+    {{ content }}
+</div>
+
+<script type="text/javascript">
     function search() {
+
         const input = $("#searchInput"),
-            table = $("#table");
+            table = $("#table > table");
         
         var filter = input.val().toUpperCase(),
             tr = table.find('tr');
 
+        var td = null, textValue = null, item = null;
+
         tr.each(function(index, element){
-            var td = $(element).find('td')[1];
-            if (td){
-                var txtValue = td.textContent || td.innerText;
-                if(txtValue.toUpperCase().indexOf(filter) > -1){
-                    $(element).show();
-                } else {
-                    $(element).hide();
+
+            for (var i = 0; i < searchFilter.length; i++){
+                item = searchFilter[i];
+                td = $(element).find('td')[item];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        $(element).show();
+                        break;
+                    } else {
+                        $(element).hide();
+                    }
                 }
             }
+        });
+    }
+
+    function init() {
+        const table = $("#table > table");
+        var tr = table.find('tr');
+
+        tr.each(function (index, element) {
+            $(element).show();
         });
     }
 </script>

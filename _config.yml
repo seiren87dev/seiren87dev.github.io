@@ -15,12 +15,12 @@ navigation:
     - name: "Präposition"
     - name: "Satz"
     - name: "Sonstigen"
-# - name: "Wörter"
-#   sub:
-#     - name: "Nomen"
-#     - name: "Verben"
-#     - name: "Adjektiv"
-#     - name: "Sprache"
+- name: "Wörter"
+  sub:
+    - name: "Nomen"
+    - name: "Verben"
+    - name: "Adjektiv"
+    - name: "Sprache"
 # - name: "Sample"
 #   sub:
 #     - name: "Resume"
@@ -41,8 +41,8 @@ google_analytics_id: # ID
 
 # Footer
 footer: true
-footer_url: "https://github.com/ankitsultana"
-footer_text: "Page design by Ankit Sultana"
+footer_url: mailto:seiren87dev@gmail.com
+footer_text: "Diese site wurde von <span style='font-weight: bold;'>JinJe Yang</span> gemacht."
 
 # Setting
 markdown: kramdown
